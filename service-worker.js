@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/game-of-fifteen/precache-manifest.d9ea7595626a584ab16f8bc68f61608c.js"
+  "/game-of-fifteen/precache-manifest.7314a8c2a94c455366bb1d5db10806bd.js"
 );
 
 workbox.clientsClaim();
