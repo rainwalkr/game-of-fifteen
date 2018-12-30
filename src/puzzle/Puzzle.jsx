@@ -104,6 +104,7 @@ class Puzzle extends Component {
             gameWon:false
         })
         clearInterval(this.interval);
+        this.interval = null;
     }
 
     handleCellClick = (cell) => {
