@@ -1,8 +1,7 @@
-.board {
+/* .board {
     display: flex;
     flex-direction: row;
     width: fit-content;
-    /* margin: 0 auto; */
 }
 
 .board-row:after {
@@ -24,4 +23,90 @@
     padding: 0;
     text-align: center;
     width: 50px;
+} */
+
+
+
+.board-row {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row;
+    justify-content: space-around;
+    line-height: 30px;
+}
+
+.square {
+    background: #795548;
+    margin: 2px;
+    color: #FAFAFA;
+    font-weight: 500;
+    font-size: 2.6em;
+    text-align: center;
+    flex: 1 1 0;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.square:before {
+    content: '';
+    float: left;
+    padding-top: 100%;
+}
+
+.board {
+    max-width: 350px;
+    margin: 0 auto;
+    border: 2px solid #9E9E9E;
+    border-radius: 2px;
+    background: #FAFAFA;
+    padding: 2px;
+}
+
+.empty {
+    background: #FAFAFA;
+}
+
+.container {
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.stats-board {
+    padding: 10px;
+    background-color: #EEEEEE;
+    display: flex;
+    justify-content: space-between;
+}
+
+.won {
+    background-color: gold;
+}
+
+.stat {
+    display: flex;
+    align-items: center
+}
+
+.stat-label {
+    font-size: 20px;
+    margin-left: 2px;
+}
+
+.btn {
+    padding: 8px 20px;
+    background-color: #e2e2e2;
+    color: rgba(0,0,0,.87);
+    border: none;
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
 }

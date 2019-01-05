@@ -3,9 +3,13 @@ import React,{Component} from 'react'
 class Board extends Component {
 
     renderSquare(cell){
-        return <button className="square" key={cell.x + cell.y} onClick={_ => this.props.handleCellClick(cell)}>
+        let cellClass = 'square';
+        if (!this.props.grid[cell.x][cell.y]) {
+            cellClass+=' empty';
+        }
+        return <div className={cellClass} key={cell.x + cell.y} onClick={_ => this.props.handleCellClick(cell)}>
             {this.props.grid[cell.x][cell.y]}
-        </button>
+        </div>
     }
     render(){
         let board;
@@ -21,9 +25,7 @@ class Board extends Component {
         })
         return (
             <div className="board">
-            <div>
                 {board}
-            </div>
             </div>
         )
     }

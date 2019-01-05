@@ -150,11 +150,25 @@ class Puzzle extends Component {
         return(
             <div>
                 <Board grid={this.state.grid} handleCellClick={this.handleCellClick}></Board>
-                <p><strong>Moves</strong> {this.state.movesCount} </p>
-                <p><strong>Duration</strong> {this.secondsToTimeString(this.state.duration)} </p>
+                <br />
+                <br />
+                <div class="container">
+                <div class="stats-board">
+                    <div class="stat">
+                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M17 16a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4.01V4a1 1 0 0 1 1-1 1 1 0 0 1 1 1v6h1V2a1 1 0 0 1 1-1 1 1 0 0 1 1 1v8h1V1a1 1 0 1 1 2 0v9h1V2a1 1 0 0 1 1-1 1 1 0 0 1 1 1v13h1V9a1 1 0 0 1 1-1h1v8z" /></svg>
+                        <span class="stat-label">{this.state.movesCount}</span>
+                    </div>
+                    <div class="stat">
+                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M16.32 7.1A8 8 0 1 1 9 4.06V2h2v2.06c1.46.18 2.8.76 3.9 1.62l1.46-1.46 1.42 1.42-1.46 1.45zM10 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12zM7 0h6v2H7V0zm5.12 8.46l1.42 1.42L10 13.4 8.59 12l3.53-3.54z" /></svg>
+                        <span class="stat-label">{this.secondsToTimeString(this.state.duration)}</span>
+                    </div>
+                </div>
                 { this.state.gameWon? <h4>Game Won</h4>:null }
                 <br/>
-                <button onClick={this.resetGame}>Reset</button>
+                <button className="btn" onClick={this.resetGame}>New Game</button>
+                </div>
             </div>
             )
     }
