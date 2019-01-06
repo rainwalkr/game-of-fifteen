@@ -1,0 +1,37 @@
+.container {
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.heading {
+    font-weight: 500;
+}
+
+.m-none{
+margin: 0;
+}
+
+.best{
+    width: 120px;
+    height: auto;
+    background-color:#E0E0E0;
+    padding: 3px 10px 3px 10px;
+}
+.best-title {
+    text-align: center;
+    margin-bottom: 2px;
+}
+
+.flex-content-space-between{
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex-align-center {
+    display: flex;
+    align-items: center
+}
+
+.best-stat-label {
+    margin-left: 2px;
+}

@@ -46,7 +46,7 @@
     margin: 2px;
     color: #FAFAFA;
     font-weight: 500;
-    font-size: 2.6em;
+    font-size: 2.8em;
     text-align: center;
     flex: 1 1 0;
     height: auto;
@@ -74,11 +74,6 @@
 
 .empty {
     background: #FAFAFA;
-}
-
-.container {
-    max-width: 350px;
-    margin: 0 auto;
 }
 
 .stats-board {

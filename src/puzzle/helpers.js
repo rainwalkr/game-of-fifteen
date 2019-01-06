@@ -22,3 +22,9 @@ export const shuffle = (array,shuffledArray=[]) => {
     }
     return shuffle(array,shuffledArray)
 }
+
+export function secondsToTimeString(seconds){
+    var date = new Date(null);
+    date.setSeconds(seconds);
+    return date.toISOString().substr(14, 5);
+}
