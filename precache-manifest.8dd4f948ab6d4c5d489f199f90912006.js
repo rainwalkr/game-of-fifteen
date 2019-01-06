@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/game-of-fifteen/static/css/main.8660651f.chunk.css"
   },
   {
-    "revision": "5cafe5c377e1131ab9cee609008290ca",
+    "revision": "6121070fcc45f4fc51a26d98bbfa453a",
     "url": "/game-of-fifteen/index.html"
   }
 ];
