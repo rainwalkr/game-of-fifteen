@@ -28,3 +28,24 @@ export function secondsToTimeString(seconds){
     date.setSeconds(seconds);
     return date.toISOString().substr(14, 5);
 }
+
+export function deepCopy(obj) {
+    return JSON.parse(JSON.stringify(obj));
+}
+
+export function isObjectsEqual(a, b) {
+    var aProps = Object.getOwnPropertyNames(a);
+    var bProps = Object.getOwnPropertyNames(b);
+
+    if (aProps.length !== bProps.length) {
+        return false;
+    }
+
+    for (var i = 0; i < aProps.length; i++) {
+        var propName = aProps[i];
+        if (a[propName] !== b[propName]) {
+            return false;
+        }
+    }
+    return true;
+}

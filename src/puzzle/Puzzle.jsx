@@ -1,8 +1,9 @@
 import React,{Component} from 'react'
 import './puzzle.css'
+import './ribbon.css'
 import Board from './Board';
 
-import {range,isOrdered,shuffle,secondsToTimeString} from "./helpers";
+import {range,isOrdered,shuffle,secondsToTimeString,deepCopy} from "./helpers";
 
 class Puzzle extends Component {
 
@@ -77,7 +78,7 @@ class Puzzle extends Component {
 
     isAValidGridCell = grid => cell => cell.x >= 0 && cell.y >= 0 && cell.x < grid.length && cell.y < grid.length
 
-    findEmptyCell(cells,grid){
+    findEmptyCellAmong(cells,grid){
         return cells.find(cell => grid[cell.x][cell.y] === null)
     }
 
@@ -100,23 +101,35 @@ class Puzzle extends Component {
         return this.swapCellValues(cell,emptyCell,grid)
     }
 
-    resetGame = () => {
-        this.setState(this.getInitialPuzzleState(this.props.size))
+    reset = () => {
+        this.setState(
+            this.getInitialPuzzleState(this.props.size)
+            ,_ => {
+                this.props.onReset({
+                    duration:this.state.duration,
+                    movesCount:this.state.movesCount
+                })
+            })
         clearInterval(this.interval);
         this.interval = null;
     }
 
     handleCellClick = (cell) => {
-        if (!this.interval) {
-            this.interval = setInterval(() => this.tick(), 1000);
-        }
+
         let grid = this.state.grid
         let emptyNeighbour,gameWon = this.state.gameWon;
+
+        if (!this.interval) {
+            this.interval = setInterval(() => this.tick(), 1000);
+            this.props.onStart({
+                grid:deepCopy(grid)
+            })
+        }
 
         if (gameWon) {
             return
         }
-        emptyNeighbour = this.findEmptyCell(this.getNeighbourCells(cell,grid),grid);
+        emptyNeighbour = this.findEmptyCellAmong(this.getNeighbourCells(cell,grid),grid);
         if (emptyNeighbour) {
             grid = this.slideCell(cell,emptyNeighbour,grid);
             if (this.isGridOrdered(grid)) {
@@ -163,9 +176,16 @@ class Puzzle extends Component {
                         <span className="stat-label">{secondsToTimeString(this.state.duration)}</span>
                     </div>
                 </div>
-                { this.state.gameWon? <h4>Game Won</h4>:null }
-                <br/>
-                <button className="btn" onClick={this.resetGame}>New Game</button>
+                { this.state.gameWon?
+                    <div className="center pt-30">
+                        <div className="roman-ribbon ooz-in">
+                            <span>Puzzle Solved</span>
+                        </div>
+                    </div>
+                    :null }
+                <div className="center pt-30">
+                    <button className="btn" onClick={this.reset}>Shuffle</button>
+                </div>
             </div>
             )
     }

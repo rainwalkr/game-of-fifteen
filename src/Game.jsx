@@ -2,7 +2,7 @@ import React,{Component} from "react";
 import Puzzle from "./puzzle/Puzzle";
 import Storage from "./storage";
 import './game.css'
-import { secondsToTimeString } from "./puzzle/helpers";
+import { secondsToTimeString,isObjectsEqual } from "./puzzle/helpers";
 
 class Game extends Component {
 
@@ -11,15 +11,32 @@ class Game extends Component {
         this.storage = new Storage();
         let bestPlay = this.getBestGamePlay(this.storage.get('gamePlays',[]))
         this.state = {
-            bestPlay
+            bestPlay,
+            isGamePlaying:false,
+            recordSmashed:false
         }
     }
+    handleStart = _ => {
+        this.setState({
+            isGamePlaying:true
+        })
+    }
 
-    handleSolved(gameState){
-        let bestPlay = this.getBestGamePlay(this.saveGamePlay(gameState));
-        if (bestPlay) {
+    handleReset = _ => {
+        this.setState({
+            isGamePlaying:false
+        })
+    }
+
+    handleSolved = gameState => {
+        let previousBestPlay = this.state.bestPlay;
+        let currentBestPlay = this.getBestGamePlay(this.saveGamePlay(gameState));
+        if (currentBestPlay) {
+            let recordSmashed = previousBestPlay? !isObjectsEqual(previousBestPlay,currentBestPlay):false; 
             this.setState({
-                bestPlay
+                bestPlay:currentBestPlay,
+                isGamePlaying:false,
+                recordSmashed
             })
         }
     }
@@ -45,12 +62,21 @@ class Game extends Component {
     render(){
         let bestCard = null
         if (this.state.bestPlay) {
+            let bestCardStyle = 'best';
+            if (!this.state.isGamePlaying) {
+                bestCardStyle += ' highlight';
+            }
+            if (this.state.recordSmashed) {
+                bestCardStyle += ' flash';
+            }
             bestCard = (
-                <div className="best">
-                    <div className="best-title">
-                        BEST
-                    </div>
+                <div className={bestCardStyle}>
                     <div className="flex-content-space-between">
+                        <div className="flex-align-center">
+                            <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path d="M15 9a3 3 0 0 0 3-3h2a5 5 0 0 1-5.1 5 5 5 0 0 1-3.9 3.9V17l5 2v1H4v-1l5-2v-2.1A5 5 0 0 1 5.1 11H5a5 5 0 0 1-5-5h2a3 3 0 0 0 3 3V4H2v2H0V2h5V0h10v2h5v4h-2V4h-3v5z"/></svg>
+                            <span className="best-stat-label">Best</span>
+                        </div>
                         <div className="flex-align-center">
                             <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                 <path d="M17 16a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4.01V4a1 1 0 0 1 1-1 1 1 0 0 1 1 1v6h1V2a1 1 0 0 1 1-1 1 1 0 0 1 1 1v8h1V1a1 1 0 1 1 2 0v9h1V2a1 1 0 0 1 1-1 1 1 0 0 1 1 1v13h1V9a1 1 0 0 1 1-1h1v8z" /></svg>
@@ -69,11 +95,14 @@ class Game extends Component {
         <div className="container">
             <br/>
             <div className="flex-content-space-between">
-                <div><h2 className="heading m-none">15 Puzzle</h2></div>
+                <div></div>
                 {bestCard}
             </div>
             <br/>
-            <Puzzle size={4} onSolved={gameState => this.handleSolved(gameState)}></Puzzle>
+            <Puzzle size={4} 
+                onStart={this.handleStart} 
+                onReset={this.handleReset} 
+                onSolved={this.handleSolved}></Puzzle>
         </div>
         )
     }
