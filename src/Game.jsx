@@ -13,7 +13,11 @@ class Game extends Component {
         this.state = {
             bestPlay,
             isGamePlaying:false,
-            recordSmashed:false
+            recordSmashed:false,
+            puzzleSlide:{
+                direction:null,
+                timestamp:null
+            }
         }
     }
     handleStart = _ => {
@@ -24,7 +28,8 @@ class Game extends Component {
 
     handleReset = _ => {
         this.setState({
-            isGamePlaying:false
+            isGamePlaying:false,
+            recordSmashed:false
         })
     }
 
@@ -57,6 +62,35 @@ class Game extends Component {
     getBestGamePlay(gamePlays){
         let sortedGamePlays = this.sortGamePLays(gamePlays);
         return sortedGamePlays[0] || null;
+    }
+
+    componentDidMount() {
+        window.addEventListener('keydown', this.handleKeydown.bind(this));
+    }
+    componentWillUnmount() {
+        window.removeEventListener('keydown', this.handleKeydown.bind(this));
+    }
+
+    handleKeydown(e) {
+        let moves = {
+            39:'right',
+            37:'left',
+            38:'top',
+            40:'down',
+            87:'top',//w
+            65:'left',//a
+            83:'down',//s
+            68:'right'//d
+        }
+        let direction = moves[e.keyCode]
+        if (direction) {
+            this.setState({
+                puzzleSlide:{
+                    direction,
+                    timestamp:Date.now()
+                }
+            })
+        }
     }
 
     render(){
@@ -100,6 +134,7 @@ class Game extends Component {
             </div>
             <br/>
             <Puzzle size={4} 
+                slide={this.state.puzzleSlide}
                 onStart={this.handleStart} 
                 onReset={this.handleReset} 
                 onSolved={this.handleSolved}></Puzzle>

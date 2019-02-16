@@ -76,6 +76,30 @@ class Puzzle extends Component {
         return neighbours.filter(this.isAValidGridCell(grid));
     }
 
+    getNeighbours(cell,grid){
+        cell = {...cell}
+        grid = [...grid]
+        let neighbours = [
+            {
+                cell:{x:cell.x, y:cell.y - 1},
+                position:'left'
+            },
+            {
+                cell:{x:cell.x, y:cell.y + 1},
+                position:'right'
+            },
+            {
+                cell:{x:cell.x - 1, y:cell.y},
+                position:'top'
+            },
+            {
+                cell:{x:cell.x + 1, y:cell.y},
+                position:'down'
+            },
+        ]
+        return neighbours.filter(neighbour => this.isAValidGridCell(grid)(neighbour.cell));
+    }
+
     isAValidGridCell = grid => cell => cell.x >= 0 && cell.y >= 0 && cell.x < grid.length && cell.y < grid.length
 
     findEmptyCellAmong(cells,grid){
@@ -84,8 +108,8 @@ class Puzzle extends Component {
 
     findEmptyCellOnGrid(grid){
         let x,y;
-        y = grid.findIndex(row => row.includes(null))
-        x = grid[y].findIndex(square => square === null)
+        x = grid.findIndex(row => row.includes(null))
+        y = grid[x].findIndex(square => square === null)
         return {x,y}
     }
 
@@ -99,6 +123,29 @@ class Puzzle extends Component {
     
     slideCell(cell,emptyCell,grid){
         return this.swapCellValues(cell,emptyCell,grid)
+    }
+
+    moveEmptyCellTo(direction){
+        if (!direction) {
+            return
+        }
+        let grid = this.state.grid
+        let emptyCell = this.findEmptyCellOnGrid(grid);
+        let neighbours = this.getNeighbours(emptyCell,grid);
+        let neighbour = neighbours.find(neighbour => neighbour.position === direction);
+        if (neighbour) {
+            this.handleCellClick(neighbour.cell)
+        }
+    }
+
+    slideTo(direction){
+        let invertedDirection={
+            'top':'down',
+            'down':'top',
+            'left':'right',
+            'right':'left'
+        }
+        this.moveEmptyCellTo(invertedDirection[direction])
     }
 
     reset = () => {
@@ -188,6 +235,12 @@ class Puzzle extends Component {
                 </div>
             </div>
             )
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot){
+        if(this.props.slide.timestamp !== prevProps.slide.timestamp){
+            this.slideTo(this.props.slide.direction)
+        }
     }
 }
 
