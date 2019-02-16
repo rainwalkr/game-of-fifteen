@@ -1,13 +1,13 @@
 {
-  "main.css": "/game-of-fifteen/static/css/main.06aec885.chunk.css",
-  "main.js": "/game-of-fifteen/static/js/main.005cf536.chunk.js",
-  "main.js.map": "/game-of-fifteen/static/js/main.005cf536.chunk.js.map",
-  "static/js/1.5fa54fa9.chunk.js": "/game-of-fifteen/static/js/1.5fa54fa9.chunk.js",
-  "static/js/1.5fa54fa9.chunk.js.map": "/game-of-fifteen/static/js/1.5fa54fa9.chunk.js.map",
+  "main.css": "/game-of-fifteen/static/css/main.3c3df1d0.chunk.css",
+  "main.js": "/game-of-fifteen/static/js/main.a0063fa0.chunk.js",
+  "main.js.map": "/game-of-fifteen/static/js/main.a0063fa0.chunk.js.map",
+  "static/js/1.3111b724.chunk.js": "/game-of-fifteen/static/js/1.3111b724.chunk.js",
+  "static/js/1.3111b724.chunk.js.map": "/game-of-fifteen/static/js/1.3111b724.chunk.js.map",
   "runtime~main.js": "/game-of-fifteen/static/js/runtime~main.100cc8ba.js",
   "runtime~main.js.map": "/game-of-fifteen/static/js/runtime~main.100cc8ba.js.map",
-  "static/css/main.06aec885.chunk.css.map": "/game-of-fifteen/static/css/main.06aec885.chunk.css.map",
+  "static/css/main.3c3df1d0.chunk.css.map": "/game-of-fifteen/static/css/main.3c3df1d0.chunk.css.map",
   "index.html": "/game-of-fifteen/index.html",
-  "precache-manifest.761b04f63e55022997e548e5f6626431.js": "/game-of-fifteen/precache-manifest.761b04f63e55022997e548e5f6626431.js",
+  "precache-manifest.a992b5cf706edfd9824acec119a7c05d.js": "/game-of-fifteen/precache-manifest.a992b5cf706edfd9824acec119a7c05d.js",
   "service-worker.js": "/game-of-fifteen/service-worker.js"
 }
