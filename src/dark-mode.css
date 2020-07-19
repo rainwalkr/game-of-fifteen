@@ -1,0 +1,22 @@
+.dark-side .stats-board {
+    background-color: #424242;
+    border: 1px solid #424242;
+}
+.dark-side .stat-label {
+    color: #E0E0E0;
+}
+
+.dark-side .square.empty {
+    background: #212121 !important;
+}
+.dark-side#app{
+    background: #212121;
+}
+.dark-side .board {
+    border: 2px solid #424242;
+    background: #212121;
+}
+
+.dark-side .title{
+    color: #E0E0E0;
+}

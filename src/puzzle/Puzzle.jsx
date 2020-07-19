@@ -1,6 +1,7 @@
 import React,{Component} from 'react'
 import './puzzle.css'
 import './ribbon.css'
+import './themes.css'
 import Board from './Board';
 
 import {range,isOrdered,shuffle,secondsToTimeString,deepCopy} from "./helpers";
@@ -207,13 +208,13 @@ class Puzzle extends Component {
 
     render(){
         return(
-            <div>
+            <div className={this.props.theme}>
                 <Board grid={this.state.grid} handleCellClick={this.handleCellClick}></Board>
                 <br />
                 <br />
                 <div className="stats-board">
                     <div className="stat">
-                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <svg width="20" height="19" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                             <path d="M17 16a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4.01V4a1 1 0 0 1 1-1 1 1 0 0 1 1 1v6h1V2a1 1 0 0 1 1-1 1 1 0 0 1 1 1v8h1V1a1 1 0 1 1 2 0v9h1V2a1 1 0 0 1 1-1 1 1 0 0 1 1 1v13h1V9a1 1 0 0 1 1-1h1v8z" /></svg>
                         <span className="stat-label">{this.state.movesCount}</span>
                     </div>

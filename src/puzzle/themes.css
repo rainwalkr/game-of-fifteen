@@ -1,0 +1,40 @@
+.aqua .square {
+    background: #B2EBF2;
+    color: #00838F;
+}
+
+.sky .square {
+    background: #BBDEFB;
+    color: #1565C0;
+}
+
+.chocolate .square {
+    background: #D7CCC8;
+    color: #795548;
+}
+
+.oreo .square {
+    background: #B2EBF2;
+    color: #5D4037;
+}
+
+.mud .square {
+    background: #D7CCC8;
+    color: #4E342E;
+}
+
+.iron-man .square {
+    background: #AA0505;
+    color: #FBCA03;
+}
+
+.cadbury .square {
+    background: #472f92;
+    color: goldenrod;
+}
+
+.forest .square {
+    background: #C5E1A5;
+    color: #1B5E20;
+}
+
