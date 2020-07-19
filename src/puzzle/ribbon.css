@@ -24,14 +24,14 @@
 
 .roman-ribbon:after {
     right: -.57em;
-    z-index: -1;
+    z-index: 1;
 }
 
 .roman-ribbon:before {
     bottom: auto;
     top: -.5em;
     left: -.57em;
-    z-index: -1;
+    z-index: 0;
 }
 
 .roman-ribbon span {
@@ -41,6 +41,7 @@
     text-decoration: none;
     color: #192238;
     background-color: #8ed2a9;
+    z-index: 2;
 }
 
 .roman-ribbon span:after,

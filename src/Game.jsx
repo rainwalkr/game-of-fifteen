@@ -1,7 +1,10 @@
 import React,{Component} from "react";
 import Puzzle from "./puzzle/Puzzle";
+import Settings  from "./settings/Settings";
+import UserSettings  from "./settings/user-settings";
 import Storage from "./storage";
 import './game.css'
+import './dark-mode.css'
 import { secondsToTimeString,isObjectsEqual } from "./puzzle/helpers";
 
 class Game extends Component {
@@ -9,8 +12,12 @@ class Game extends Component {
     constructor(props){
         super(props)
         this.storage = new Storage();
+        this.userSettings = new UserSettings();
         let bestPlay = this.getBestGamePlay(this.storage.get('gamePlays',[]))
+        let userSettings = this.userSettings.get();
         this.state = {
+            userSettings,
+            showSettingsPanel:false,
             bestPlay,
             isGamePlaying:false,
             recordSmashed:false,
@@ -93,6 +100,20 @@ class Game extends Component {
         }
     }
 
+    showModal = () => {
+        this.setState({ showSettingsPanel: true });
+    }
+
+    hideModal = () => {
+        this.setState({ showSettingsPanel: false });
+    }
+
+    handleUserSettingsChange = userSettings => {
+        this.setState({
+            userSettings
+        })
+    }
+
     render(){
         let bestCard = null
         if (this.state.bestPlay) {
@@ -107,7 +128,7 @@ class Game extends Component {
                 <div className={bestCardStyle}>
                     <div className="flex-content-space-between">
                         <div className="flex-align-center">
-                            <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <svg width="15" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                 <path d="M15 9a3 3 0 0 0 3-3h2a5 5 0 0 1-5.1 5 5 5 0 0 1-3.9 3.9V17l5 2v1H4v-1l5-2v-2.1A5 5 0 0 1 5.1 11H5a5 5 0 0 1-5-5h2a3 3 0 0 0 3 3V4H2v2H0V2h5V0h10v2h5v4h-2V4h-3v5z"/></svg>
                             <span className="best-stat-label">Best</span>
                         </div>
@@ -126,19 +147,27 @@ class Game extends Component {
             )
         }
         return (
-        <div className="container">
-            <br/>
-            <div className="flex-content-space-between">
-                <div></div>
-                {bestCard}
+            <div id="app" className={this.state.userSettings.darkMode? 'dark-side':''}>
+                <div className="container">
+                    <br/>
+                    <br/>
+                    <div className="flex-content-space-between">
+                        <div className="title"><span onDoubleClick={this.showModal}>15</span> Puzzle</div>
+                        {bestCard}
+                    </div>
+                    <br/>
+                    <Puzzle size={4}
+                        theme={this.state.userSettings.theme} 
+                        slide={this.state.puzzleSlide}
+                        onStart={this.handleStart} 
+                        onReset={this.handleReset} 
+                        onSolved={this.handleSolved}></Puzzle>
+                </div>
+                <Settings 
+                    show={this.state.showSettingsPanel} 
+                    handleClose={this.hideModal} 
+                    onUserSettingsChanged={this.handleUserSettingsChange}></Settings>
             </div>
-            <br/>
-            <Puzzle size={4} 
-                slide={this.state.puzzleSlide}
-                onStart={this.handleStart} 
-                onReset={this.handleReset} 
-                onSolved={this.handleSolved}></Puzzle>
-        </div>
         )
     }
 }
