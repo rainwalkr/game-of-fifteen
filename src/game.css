@@ -19,8 +19,10 @@ margin: 0;
 }
 
 .title{
-    font-size: 24px;
+    font-size: 23px;
     color: #424242;
+    flex-grow: 1;
+    text-align: center;
 }
 
 .best{

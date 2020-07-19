@@ -152,7 +152,7 @@ class Game extends Component {
                     <br/>
                     <br/>
                     <div className="flex-content-space-between">
-                        <div className="title" onDoubleClick={this.showModal}>15 Puzzle</div>
+                        <div className="title"><span onDoubleClick={this.showModal}>15</span> Puzzle</div>
                         {bestCard}
                     </div>
                     <br/>
