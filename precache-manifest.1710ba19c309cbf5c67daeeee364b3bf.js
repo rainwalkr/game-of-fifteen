@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "bf0edec653abf658b5f0",
-    "url": "/game-of-fifteen/static/css/main.e23ba29e.chunk.css"
+    "revision": "25b2d823c3b50f98e05d",
+    "url": "/game-of-fifteen/static/css/main.98628923.chunk.css"
   },
   {
-    "revision": "bf0edec653abf658b5f0",
-    "url": "/game-of-fifteen/static/js/main.bf0edec6.chunk.js"
+    "revision": "25b2d823c3b50f98e05d",
+    "url": "/game-of-fifteen/static/js/main.25b2d823.chunk.js"
   },
   {
     "revision": "852b5c6df4fd1182b88b",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/game-of-fifteen/static/js/runtime~main.100cc8ba.js"
   },
   {
-    "revision": "a2bf736b512a1d25dc5c4c10c460608b",
+    "revision": "e39415a9cc8527ab258b536baa03301d",
     "url": "/game-of-fifteen/index.html"
   }
 ];
