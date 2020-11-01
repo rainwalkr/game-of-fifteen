@@ -24,7 +24,8 @@ class Game extends Component {
             puzzleSlide:{
                 direction:null,
                 timestamp:null
-            }
+            },
+            prevGameSolvedTimestamp:null
         }
     }
     handleStart = _ => {
@@ -48,7 +49,8 @@ class Game extends Component {
             this.setState({
                 bestPlay:currentBestPlay,
                 isGamePlaying:false,
-                recordSmashed
+                recordSmashed,
+                prevGameSolvedTimestamp:Date.now()
             })
         }
     }
@@ -163,9 +165,10 @@ class Game extends Component {
                         onReset={this.handleReset} 
                         onSolved={this.handleSolved}></Puzzle>
                 </div>
-                <Settings 
+                <Settings
+                    prevGameSolvedTimestamp={this.state.prevGameSolvedTimestamp} 
                     show={this.state.showSettingsPanel} 
-                    handleClose={this.hideModal} 
+                    onClose={this.hideModal} 
                     onUserSettingsChanged={this.handleUserSettingsChange}></Settings>
             </div>
         )

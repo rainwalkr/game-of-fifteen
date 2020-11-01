@@ -26,5 +26,6 @@ export default class UserSettings {
             userSettings['theme'] = data['theme']
         }
         this.storage.set('userSettings',userSettings)
+        return userSettings;
     }
 }
